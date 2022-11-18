@@ -3,7 +3,6 @@ package com.example.composesample
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,7 +17,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,9 +27,9 @@ import coil.transform.CircleCropTransformation
 import com.example.composesample.data.Movie
 import com.example.composesample.ui.theme.ComposeSampleTheme
 import com.example.composesample.viewmodel.MainViewModel
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
-    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,15 +40,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                   /* Row() {
-                        Column() {
-                            Greeting("Satya")
-                            Greeting("Raj")
-                        }
-                    }*/
 
-                    MovieList(movieList = mainViewModel.movieListResponse)
-                    mainViewModel.getMovieList()
+                    MovieList()
                 }
             }
         }
@@ -71,7 +62,9 @@ fun DefaultPreview() {
 }
 
 @Composable
-fun MovieList(movieList: List<Movie>) {
+fun MovieList(viewModel: MainViewModel= koinViewModel()) {
+    val movieList = viewModel.movieListResponse
+    viewModel.getMovieList()
     var selectedIndex by remember { mutableStateOf(-1) }
     LazyColumn {
         itemsIndexed(items = movieList) { index, item ->
@@ -81,7 +74,6 @@ fun MovieList(movieList: List<Movie>) {
         }
     }
 }
-
 
 @Composable
 fun MovieItem(movie: Movie, index: Int, selectedIndex: Int, onClick: (Int) -> Unit) {
@@ -148,7 +140,6 @@ fun MovieItem(movie: Movie, index: Int, selectedIndex: Int, onClick: (Int) -> Un
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
-
                 }
             }
         }

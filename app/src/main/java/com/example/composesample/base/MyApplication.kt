@@ -10,7 +10,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
 class MyApplication : Application(),Application.ActivityLifecycleCallbacks {
-
+    val TAG: String = "MyApplication"
     override fun onCreate() {
         super.onCreate()
         startKoin {
@@ -20,37 +20,35 @@ class MyApplication : Application(),Application.ActivityLifecycleCallbacks {
         }
     }
     override fun onActivityCreated(p0: Activity, p1: Bundle?) {
-        Log.d("Kethu", "onActivityCreated: called ")
+        Log.d(TAG, "onActivityCreated: called ")
     }
 
     override fun onActivityStarted(p0: Activity) {
-        Log.d("Kethu", "onActivityStarted: called ")
+        Log.d(TAG, "onActivityStarted: called ")
 
     }
 
     override fun onActivityResumed(p0: Activity) {
-        Log.d("Kethu", "onActivityResumed: called ")
+        Log.d(TAG, "onActivityResumed: called ")
 
     }
 
     override fun onActivityPaused(p0: Activity) {
-        Log.d("Kethu", "onActivityPaused: called ")
+        Log.d(TAG, "onActivityPaused: called ")
 
     }
 
     override fun onActivityStopped(p0: Activity) {
-        Log.d("Kethu", "onActivityStopped: called ")
+        Log.d(TAG, "onActivityStopped: called ")
 
     }
 
     override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
-        Log.d("Kethu", "onActivitySaveInstanceState: called ")
+        Log.d(TAG, "onActivitySaveInstanceState: called ")
 
     }
 
     override fun onActivityDestroyed(p0: Activity) {
-        Log.d("Kethu", "onActivityDestroyed: called ")
+        Log.d(TAG, "onActivityDestroyed: called ")
     }
-
-
 }
