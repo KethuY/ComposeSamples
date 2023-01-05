@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ComposeSample</string>
+    <string name="app_name">Compose Sample</string>
+    <string name="title_activity_practice_views">PracticeViewsActivity</string>
 </resources>
