@@ -1,6 +1,7 @@
 package com.example.composesample
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -10,10 +11,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,18 +35,31 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeSampleTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
 
-                    MovieList()
+                Column(Modifier.padding(16.dp)) {
+                    Button(onClick = { Toast.makeText(this@MainActivity,"Clicked",Toast.LENGTH_LONG).show() }, contentPadding = PaddingValues(8.dp)) {
+                        Icon(Icons.Filled.Favorite , contentDescription ="Fav" , modifier = Modifier.size(ButtonDefaults.IconSize))
+                        Spacer(Modifier.size(ButtonDefaults.IconSpacing) )
+                        Text(text = "Like")
+                    }
                 }
+
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 @Composable
 fun Greeting(name: String) {
