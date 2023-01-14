@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,26 +36,56 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeSampleTheme {
-
-                Column(Modifier.padding(16.dp)) {
-                    Button(onClick = { Toast.makeText(this@MainActivity,"Clicked",Toast.LENGTH_LONG).show() }, contentPadding = PaddingValues(8.dp)) {
-                        Icon(Icons.Filled.Favorite , contentDescription ="Fav" , modifier = Modifier.size(ButtonDefaults.IconSize))
-                        Spacer(Modifier.size(ButtonDefaults.IconSpacing) )
-                        Text(text = "Like")
-                    }
-                }
+              ShowMaterialBg()
 
             }
         }
     }
+
+    @Composable
+    private fun ShowMaterialBg() {
+
+        Scaffold(
+            topBar = {
+                TopAppBar(
+
+                    title = {
+                        Text("Compose Learning", color = Color.White)
+                    },
+                    elevation = 10.dp,
+                    navigationIcon = {
+                        IconButton(onClick = {
+                            
+                        }) {
+
+                            Icon(Icons.Filled.Menu, contentDescription = null)
+                        }
+                    },
+                    backgroundColor = MaterialTheme.colors.primary,
+                    contentColor = Color.White,
+                )
+            },
+             content = {
+            Column(Modifier.padding(16.dp)) {
+                Button(onClick = {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Clicked",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }, contentPadding = PaddingValues(8.dp)) {
+                    Icon(
+                        Icons.Filled.Favorite,
+                        contentDescription = "Fav",
+                        modifier = Modifier.size(ButtonDefaults.IconSize)
+                    )
+                    Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                    Text(text = "Like")
+                }
+            }
+        })
+    }
 }
-
-
-
-
-
-
-
 
 
 
